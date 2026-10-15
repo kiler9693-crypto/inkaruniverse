@@ -1,0 +1,368 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: radial-gradient(
+        circle at top,
+        #25245c,
+        #100b25 55%,
+        #050510
+    );
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+h1 {
+    color: #ffc9e8;
+    font-size: 38px;
+    text-shadow: 0 0 20px #ff75b5;
+}
+
+p {
+    color: #d8d5f5;
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+button {
+    padding: 16px 30px;
+    border: 1px solid #ffb8df;
+    border-radius: 30px;
+    background: linear-gradient(
+        135deg,
+        #ff75b5,
+        #9c65ff
+    );
+    color: white;
+    font-size: 17px;
+    cursor: pointer;
+    box-shadow: 0 0 25px #bd65ff66;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+button:hover {
+    transform: scale(1.07);
+    box-shadow: 0 0 35px #ff75b5aa;
+}
+#space {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 0 6px white;
+    animation: twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle {
+    from {
+        opacity: 0.2;
+        transform: scale(0.7);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1.5);
+    }
+}
+.comet {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #ffffff;
+    border-radius: 50%;
+    box-shadow:
+        0 0 6px 2px #b8e7ff,
+        0 0 18px 5px #65baff;
+    pointer-events: none;
+}
+
+.comet::after {
+    content: "";
+    position: absolute;
+    width: 100px;
+    height: 3px;
+    left: 50%;
+    top: 50%;
+    border-radius: 50%;
+    background: linear-gradient(
+        to left,
+        rgba(255, 255, 255, 0.95),
+        rgba(120, 190, 255, 0.5),
+        transparent
+    );
+    filter: blur(2px);
+    transform: translate(-100%, -50%) rotate(var(--angle, 45deg));
+    transform-origin: right center;
+}
+
+.content {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 20px;
+}
+
+h1 {
+    max-width: 800px;
+    line-height: 1.3;
+}
+
+p {
+    max-width: 600px;
+}
+
+button {
+    position: relative;
+    z-index: 2;
+}
+.content {
+    position: relative;
+    z-index: 1;
+    padding: 100px 20px;
+}
+
+#universe {
+    position: fixed;
+    inset: 0;
+    z-index: 2;
+    padding: 25px 12px;
+    overflow: hidden;
+}
+
+#universe h2 {
+    color: #ffc9e8;
+    text-shadow: 0 0 15px #ff75b5;
+}
+
+#planet {
+    width: 100%;
+    height: 70vh;
+    min-height: 300px;
+    cursor: grab;
+}
+
+#planet:active {
+    cursor: grabbing;
+}
+
+#planet canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.message-card {
+    position: fixed;
+    z-index: 10;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(340px, 88vw);
+    padding: 25px;
+    border: 1px solid #ffb8df;
+    border-radius: 22px;
+    background: #17112cf2;
+    box-shadow: 0 0 35px #bd65ff77;
+}
+
+.message-card h3 {
+    color: #ffc9e8;
+}
+
+.message-card button {
+    margin-top: 10px;
+}
+.back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 20;
+    padding: 10px 18px;
+    border: 1px solid #ffb8df;
+    border-radius: 25px;
+    background: #17112cf0;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+}
+#welcome {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#welcome h1,
+#welcome p {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#welcome button {
+    display: inline-block;
+}
+#planet {
+    width: 100%;
+    height: 65vh;
+    min-height: 320px;
+    max-height: 600px;
+    cursor: grab;
+}
+
+#planet:active {
+    cursor: grabbing;
+}
+
+#planet canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+/* === КАРТОЧКА ПОСЛАНИЯ === */
+
+#planetMessage {
+    position: fixed;
+    z-index: 1000;
+    left: 50%;
+    bottom: 35px;
+    transform: translate(-50%, 25px);
+    width: min(420px, calc(100vw - 32px));
+    box-sizing: border-box;
+    padding: 30px 26px 24px;
+    border: 1px solid rgba(255, 190, 225, 0.45);
+    border-radius: 24px;
+    background: linear-gradient(
+        145deg,
+        rgba(38, 25, 68, 0.97),
+        rgba(15, 14, 38, 0.97)
+    );
+    box-shadow:
+        0 0 35px rgba(184, 113, 255, 0.18),
+        0 0 70px rgba(255, 126, 190, 0.10);
+    color: #fff1fa;
+    text-align: center;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+        opacity 0.45s ease,
+        transform 0.45s ease,
+        visibility 0.45s;
+    backdrop-filter: blur(18px);
+}
+
+#planetMessage.message-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, 0);
+}
+
+#planetMessageTitle {
+    margin: 12px 0;
+    color: #ffc7e6;
+    font-size: 23px;
+    line-height: 1.35;
+}
+
+#planetMessageText {
+    margin: 0;
+    color: #f3e9ff;
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+#planetMessage .message-stars {
+    color: #ffd5f0;
+    font-size: 22px;
+}
+
+#planetMessage .message-bottom {
+    margin-top: 20px;
+    color: #ffb6d9;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+}
+
+#closePlanetMessage {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    border: none;
+    background: transparent;
+    color: #fff;
+    font-size: 29px;
+    cursor: pointer;
+}
+
+#closePlanetMessage:hover {
+    color: #ffb6d9;
+}
+
+@media (max-width: 600px) {
+    #planetMessage {
+        bottom: 16px;
+        padding: 25px 20px 20px;
+    }
+
+    #planetMessageTitle {
+        font-size: 21px;
+    }
+
+    #planetMessageText {
+        font-size: 15px;
+    }
+}
+#previousPlanetButton {
+    position: fixed;
+    top: 58px;
+    left: 14px;
+    z-index: 1001;
+    padding: 12px 18px;
+    border: 1px solid rgba(220, 180, 255, 0.65);
+    border-radius: 24px;
+    background: rgba(24, 18, 49, 0.88);
+    color: #ffe5fa;
+    font-size: 14px;
+    cursor: pointer;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 0 20px rgba(180, 110, 255, 0.15);
+    transition: background 0.25s, transform 0.25s;
+}
+
+#previousPlanetButton:hover {
+    background: rgba(105, 63, 145, 0.9);
+    transform: translateY(-2px);
+}
+
+/* Подпись на странице вселенной */
+.universe-credit {
+    position: absolute;
+    bottom: 8px;
+    left: 0;
+    width: 100%;
+    z-index: 5;
+    text-align: center;
+    color: rgba(220, 210, 255, 0.75);
+    font: 9px sans-serif;
+    letter-spacing: 0.5px;
+    pointer-events: none;
+    text-shadow: 0 0 6px rgba(160, 130, 255, 0.5);
+}
