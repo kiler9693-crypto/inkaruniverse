@@ -1,6 +1,6 @@
 const space = document.getElementById("space");
 
-// Создаём случайные звёзды
+//звёзды и рандом 
 for (let i = 0; i < 150; i++) {
     const star = document.createElement("div");
 
@@ -12,7 +12,7 @@ for (let i = 0; i < 150; i++) {
     space.appendChild(star);
 }
 
-// Создаём комеMeshBasicMaterialу
+// это мои (сообщения тебе) кометки 
 function createComet(){
     const comet = document.createElement("div");
     comet.className = "comet";
@@ -62,7 +62,7 @@ function createComet(){
     animation.onfinish = () => comet.remove();
 }
 
-// Новая комета появляется каждые 1,8 секунды
+// появления кометы каждые 2,5 секунды
 setInterval(createComet, 2500);
 
 let planetStarted = false;
@@ -113,7 +113,7 @@ function startPlanet() {
     scene.add(sunlight);
 
     
-    // Загружаем реалистичные текстуры Земли
+    // Текстурки земли 
     const loader = new THREE.TextureLoader();
 
     const earthTexture = loader.load(
@@ -176,12 +176,11 @@ function startPlanet() {
     planet.add(atmosphere);
     
    
-        // === ФОНОВЫЕ ПЛАНЕТЫ И СОЛНЦЕ ===
+        //ФОНОВЫЕ ПЛАНЕТЫ И СОЛНЦ
 
     const spaceLoader = new THREE.TextureLoader();
 
-    // Создаём планету с запасным цветом,
-    // чтобы она не была чёрной, если текстура не загрузится.
+    // планета с запас цветом
     function createBackgroundPlanet(size, color, textureUrl, x, y, z) {
        const material = new THREE.MeshPhongMaterial({
     color: color,
@@ -230,7 +229,7 @@ function startPlanet() {
     );
     sunGroup.add(sun);
 
-    // МЯГКОЕ КРУГОВОЕ СВЕЧЕНИЕ СОЛНЦА
+    // Мягкое свечения солнца
 const glowCanvas = document.createElement("canvas");
 glowCanvas.width = 256;
 glowCanvas.height = 256;
@@ -356,7 +355,7 @@ sunGroup.add(sunGlow);
     );
 
     // Медленное вращение фоновых планет.
-    // Землю здесь не трогаем.
+    // землю не брал здесь 
     function animateBackgroundPlanets() {
         mercury.rotation.y += 0.002;
         venus.rotation.y += 0.001;
@@ -459,11 +458,11 @@ const messagePointMaterial = new THREE.MeshBasicMaterial({
 selectableBodies.forEach((body) => {
     const count = Math.random() < 0.5 ? 2 : 3;
 
-    // Радиус берём из геометрии сферы
+    
     const geometry = body.hit.geometry;
     const radius = geometry.parameters?.radius;
 
-    // Если объект не сфера пропустим 
+    
     if (!radius) {
         console.warn("Не удалось определить радиус:", body.name);
         return;
@@ -525,7 +524,7 @@ const planetHistory = [];
 currentBody = selectableBodies.find(
     body => body.name === "Земля"
 );
-// Показ точек только на выб планете, а то херня какая то 
+// Показ точек только на выб планете
 messagePoints.forEach(point => {
     point.visible = point.userData.bodyName === currentBody.name;
 });
@@ -825,7 +824,7 @@ renderer.domElement.addEventListener("pointermove", event => {
         return;
     }
 
-    // Вращение галактики в обычном режиме
+    // Вращение галактики в обычн режиме
     if (systemDragging) {
         const dx = event.clientX - systemLastX;
         const dy = event.clientY - systemLastY;
@@ -874,7 +873,7 @@ renderer.domElement.addEventListener("pointerup", event => {
 
     raycaster.setFromCamera(mouse, camera);
 
-    // Проверяем точки с посланиями
+    // Проверкааааа точки с посланиями
     const pointHits = raycaster.intersectObjects(messagePoints, false);
 
     console.log("Найдено точек:", pointHits.length);
@@ -892,7 +891,7 @@ renderer.domElement.addEventListener("pointerup", event => {
         }
     }
 
-    // Проверяем планеты
+    // Проверка епта планеты
     const hits = raycaster.intersectObjects(
         selectableBodies.map(body => body.hit),
         false
@@ -947,13 +946,13 @@ function animate() {
     const delta = Math.min((now - previousFrameTime) / 1000, 0.05);
     previousFrameTime = now;
 
-    // Вращение галактики — только в обычном режиме
+    // Вращение галактики в обыч режиме
     if (!freeCameraMode) {
         scene.rotation.y = systemRotationY;
         scene.rotation.x = systemRotationX;
     }
 
-    // Свободное перемещение камеры
+    // Свободное перемещение чамеры
     if (freeCameraMode && !traveling) {
         const forward = new THREE.Vector3();
         camera.getWorldDirection(forward);
